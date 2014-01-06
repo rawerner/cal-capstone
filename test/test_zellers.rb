@@ -18,8 +18,8 @@ class TestZellers < MiniTest::Unit::TestCase
   end
 
   def test_zellers_starts_on_saturday
-    day_1_Jan_2012 = Zellers.calc("01", "2012")
-    assert_equal(0, day_1_Jan_2012)
+    day_1_Jan_2012 = Zellers.calc("13", "2012")
+    assert_equal(1, day_1_Jan_2012)
   end
 
 

@@ -1,22 +1,34 @@
 class Zellers
 
-  def self.calc month, year
+  def self.calculate month, year
     month = month.to_i
     year = year.to_i
     day = 1
-    week_days = {
-      0 => "Saturday",
-      1 => "Sunday",
-      2 => "Monday",
-      3 => "Tuesday",
-      4 => "Wednesday",
-      5 => "Thursday",
-      6 => "Friday"
-    }
+    if month == 1 || month == 2
+      mo = month + 12
+      yr = year - 1
+    end
 
-    day_of_week_key = (day + (26*(month + 1)/10) + year + (year/4) + 6*(year/100) + (year/400) ) %7
+    (day + (((mo + 1)*26)/10) + yr + (yr/4) + (yr/100)*6 + (yr/400)) % 7
 
-    first_day_of_month = day_of_week_key
+    # case first_day_of_month
+    # when 0
+    #   first_day_of_month = "Sa"
+    # when 1
+    #   first_day_of_month = "Su"
+    # when 2
+    #   first_day_of_month = "Mo"
+    # when 3
+    #   first_day_of_month = "Tu"
+    # when 4
+    #   first_day_of_month = "We"
+    # when 5
+    #   first_day_of_month = "Th"
+    # else
+    #   first_day_of_month = "Fr"
+    # end
+
+
   end
 
 end
