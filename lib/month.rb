@@ -16,6 +16,8 @@ class Month
     name_of_month[@month - 1] # finds month needed
   end
 
+
+
   def calc_days_in_month month, year
     months_with_30 = [4, 6, 9, 11]
     months_with_31 = [1, 3, 5, 7, 8, 10, 12]
@@ -27,6 +29,25 @@ class Month
       28
     else year % 4 == 0
       28
+    end
+  end
+
+  def display_first_week
+      case @first_day_of_month
+    when 0
+      day_of_week = "Sa" && week1 = "                   " + "1"
+    when 1
+      day_of_week = "Su" && week1 = " " + "1"
+    when 2
+      day_of_week = "Mo" && week1 = "    " + "1"
+    when 3
+      day_of_week = "Tu" && week1 = "       " + "1"
+    when 4
+      day_of_week = "We" && week1 = "          " + "1"
+    when 5
+      day_of_week = "Th" && week1 = "             " + "1"
+    else
+      day_of_week = "Fr" && week1 = "                " + "1"
     end
   end
 
