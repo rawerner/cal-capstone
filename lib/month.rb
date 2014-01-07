@@ -53,7 +53,17 @@ class Month
   # prints out the calendar
   def display_month
     month_and_year = (name_of_month + " #{@year}").center(20).rstrip
-
+    dates = format_dates
+    line = month_and_year + "\n" + WEEKDAYS + "\n"
+    until dates.empty?
+      week = dates.shift(7)
+      line << week.join(" ")
+      line << "\n"
+    end
+    until line.count("\n") >= 7
+      line << "\n"
+    end
+    puts line
 
   end
 
