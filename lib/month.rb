@@ -51,11 +51,23 @@ class Month
   end
 
   # prints out the calendar
-  def display_month
-    puts (name_of_month + " #{@year}").center(20).rstrip
-    puts "Su Mo Tu We Th Fr Sa"
+  def weeks
+    rows = []
+    rows <<  (name_of_month + " #{@year}").center(20)
+    rows << "Su Mo Tu We Th Fr Sa"
+    days = format_dates
+    (0..7).each {|num|
+      fields = days[num * 7, 7]
+      fields + "   " if fields == 7
+      rows << fields.join(" ") if fields
+    }
 
+    rows
   end
 
-
+  def display_month
+    puts weeks
+    puts blankline = "                       "
+  end
 end
+

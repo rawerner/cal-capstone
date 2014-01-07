@@ -1,5 +1,5 @@
-require_relative 'year'
-require_relative 'test/helper'
+require 'year'
+require_relative 'helper'
 
 class TestYearClass < MiniTest::Unit::TestCase
   def test_create_new_year_works
