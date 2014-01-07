@@ -10,7 +10,7 @@ class TestMonth < MiniTest::Unit::TestCase
 
   def test_month_name_is_correct
     month = Month.new(12, 2013)
-    assert_equal(December, month.name_of_month)
+    assert_equal("December", month.name_of_month)
   end
 
   def test_number_of_days_correct
