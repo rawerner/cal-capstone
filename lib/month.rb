@@ -42,7 +42,7 @@ class Month
       d < 10 ? " " + d.to_s : d.to_s
     end
     # adds blank elements to the beginning of the days array to offset the
-    #first day of the month
+    # first day of the month
     @first_day_of_month.times do
       blankday = "  "
       days.unshift(blankday)
@@ -50,10 +50,9 @@ class Month
     days
   end
 
-  # prints out the calendar
+  # formats weeks
   def weeks
     rows = []
-    rows <<  (name_of_month + " #{@year}").center(20)
     rows << "Su Mo Tu We Th Fr Sa"
     days = format_dates
     (0..7).each {|num|
@@ -64,10 +63,18 @@ class Month
 
     rows
   end
-
-  def display_month
+  # prints out the calendar
+  def display_month_without_year
+    puts name_of_month.center(20)
     puts weeks
     puts blankline = "                       "
   end
+
+  def display_month_with_year
+    puts (name_of_month + " #{@year}").center(20)
+    puts weeks
+    puts blankline = "                       "
+  end
+
 end
 
