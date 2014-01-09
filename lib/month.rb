@@ -50,19 +50,39 @@ class Month
     days
   end
 
+
+
   # formats weeks
   def weeks
     rows = []
+    rows << name_of_month.center(20) + "  "
     rows << "Su Mo Tu We Th Fr Sa" + "  "
     days = format_dates
-    (0..7).each {|num|
+    (0..8).each {|num|
       fields = days[num * 7, 7]
       rows << fields.join(" ") + "  " if fields
     }
     if rows.last.length < 22
       rows.last << " " * (22 - rows.last.length)
     end
-    until rows.length == 7
+    until rows.length == 8
+      rows << " " * 22
+    end
+    rows
+  end
+
+  def weeks_with_year
+    rows = []
+    rows << "Su Mo Tu We Th Fr Sa" + "  "
+    days = format_dates
+    (0..8).each {|num|
+      fields = days[num * 7, 7]
+      rows << fields.join(" ") + "  " if fields
+    }
+    if rows.last.length < 22
+      rows.last << " " * (22 - rows.last.length)
+    end
+    until rows.length == 8
       rows << " " * 22
     end
     rows
@@ -70,7 +90,7 @@ class Month
 
   def display_month_with_year
     puts (name_of_month + " #{@year}").center(20) +"  "
-    puts weeks
+    puts weeks_with_year
   end
 
 end
