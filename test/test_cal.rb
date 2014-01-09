@@ -15,4 +15,12 @@ class TestCalIntegration < MiniTest::Unit::TestCase
     assert_equal expected_output, shell_output
   end
 
+  def test_feb_2012
+    assert_equal(`cal 2 2012`, `ruby cal.rb 2 2012`)
+  end
+
+  def test_june_2013
+    assert_equal(`cal 6 2013`, `ruby cal.rb 6 2013`)
+  end
+
 end

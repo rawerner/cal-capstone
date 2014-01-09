@@ -1,7 +1,7 @@
 require_relative 'zellers'
 
 class Month
-  attr_reader :first_day_of_month, :number_of_days_in_month, :month, :year
+  attr_reader :first_day_of_month, :number_of_days_in_month, :month, :year, :weeks, :name_of_month
 
   WEEKDAYS = "Su Mo Tu We Th Fr Sa"
 
@@ -53,27 +53,24 @@ class Month
   # formats weeks
   def weeks
     rows = []
-    rows << "Su Mo Tu We Th Fr Sa"
+    rows << "Su Mo Tu We Th Fr Sa" + "  "
     days = format_dates
     (0..7).each {|num|
       fields = days[num * 7, 7]
-      fields + "   " if fields == 7
-      rows << fields.join(" ") if fields
+      rows << fields.join(" ") + "  " if fields
     }
-
+    if rows.last.length < 22
+      rows.last << " " * (22 - rows.last.length)
+    end
+    until rows.length == 7
+      rows << " " * 22
+    end
     rows
-  end
-  # prints out the calendar
-  def display_month_without_year
-    puts name_of_month.center(20)
-    puts weeks
-    puts blankline = "                       "
   end
 
   def display_month_with_year
-    puts (name_of_month + " #{@year}").center(20)
+    puts (name_of_month + " #{@year}").center(20) +"  "
     puts weeks
-    puts blankline = "                       "
   end
 
 end
