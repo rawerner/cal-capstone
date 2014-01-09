@@ -18,4 +18,5 @@ class TestMonth < MiniTest::Unit::TestCase
     assert_equal(31, month.calc_days_in_month(12, 2013))
   end
 
+
 end

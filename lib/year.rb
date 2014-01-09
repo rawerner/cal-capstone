@@ -5,8 +5,8 @@ class Year
 attr_reader = :year
 
   def initialize year
+    raise RangeError if year > 3000 || year < 1800
     @year = year
-
   end
 
 
@@ -14,7 +14,7 @@ attr_reader = :year
     @months = []
 
     @name_of_month = ["January","February","March","April","May","June","July","August","September","October","November","December"]
-    puts (" #{@year}").center(64)
+    puts (" #{@year}").center(60)
 
 
     (1..12).each do |num|

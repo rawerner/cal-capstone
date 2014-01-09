@@ -7,6 +7,7 @@ when 0
   today = Time.new
   month = today.month.to_i
   year = today.year.to_i
+  raise RangeError if year.to_i >= 3000 || year.to_i < 1800
   current_month = Month.new(month, year)
   current_month.display_month_with_year
 when 2

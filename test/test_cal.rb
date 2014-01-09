@@ -15,12 +15,44 @@ class TestCalIntegration < MiniTest::Unit::TestCase
     assert_equal expected_output, shell_output
   end
 
-  def test_feb_2012
+  def test_feb_2012_leap_year
     assert_equal(`cal 2 2012`, `ruby cal.rb 2 2012`)
   end
 
   def test_june_2013
     assert_equal(`cal 6 2013`, `ruby cal.rb 6 2013`)
+  end
+
+  def test_non_leap_year_in_1900
+    assert_equal(`cal 2 1900`, `ruby cal.rb 2 1900`)
+  end
+
+  def test_leap_year_in_2000
+    assert_equal(`cal 2 2000`, `ruby cal.rb 2 2000`)
+  end
+
+  def test_year_2012
+  assert_equal(`cal 2012`, `ruby cal.rb 2012`)
+  end
+
+  def test_year_1800
+  assert_equal(`cal 1800`, `ruby cal.rb 1800`)
+  end
+
+  def test_year_1900
+  assert_equal(`cal 1900`, `ruby cal.rb 1900`)
+  end
+
+  def test_year_2000
+  assert_equal(`cal 2000`, `ruby cal.rb 2000`)
+  end
+
+  def test_year_3000
+  assert_equal(`cal 3000`, `ruby cal.rb 3000`)
+  end
+
+  def test_year_2999
+  assert_equal(`cal 2999`, `ruby cal.rb 2999`)
   end
 
 end

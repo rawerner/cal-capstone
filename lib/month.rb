@@ -6,6 +6,7 @@ class Month
   WEEKDAYS = "Su Mo Tu We Th Fr Sa"
 
   def initialize month, year
+    raise RangeError if year > 3000 || year < 1800
     @month = month
     @year = year
     @first_day_of_month = Zellers.calculate(month, year)
@@ -28,9 +29,9 @@ class Month
       30
     elsif months_with_31.include? month
       31
-    elsif (year % 4 ==0 && year % 100 != 0) || year % 400 == 0
+    elsif (year % 4 == 0) && !(year % 100 == 0) || (year % 400 == 0)
       29
-    else year % 4 == 0
+    else
       28
     end
   end
@@ -52,7 +53,7 @@ class Month
 
 
 
-  # formats weeks
+  # formats year weeks into and array in advace of printing. All spacing & padding is added here.
   def weeks
     rows = []
     rows << name_of_month.center(20) + "  "
@@ -70,24 +71,24 @@ class Month
     end
     rows
   end
-
+  # formats single month weeks into and array in advace of printing. All spacing & padding is added here.
   def weeks_with_year
     rows = []
     rows << "Su Mo Tu We Th Fr Sa" + "  "
     days = format_dates
-    (0..8).each {|num|
+    (0..7).each {|num|
       fields = days[num * 7, 7]
       rows << fields.join(" ") + "  " if fields
     }
     if rows.last.length < 22
       rows.last << " " * (22 - rows.last.length)
     end
-    until rows.length == 8
+    until rows.length == 7
       rows << " " * 22
     end
     rows
   end
-
+  # displays the single month string.
   def display_month_with_year
     puts (name_of_month + " #{@year}").center(20) +"  "
     puts weeks_with_year
