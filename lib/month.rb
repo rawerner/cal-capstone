@@ -1,24 +1,22 @@
 require_relative 'zellers'
 
 class Month
-  attr_reader :first_day_of_month, :number_of_days_in_month, :month, :year, :weeks, :name_of_month
+  attr_reader :first_day_of_month, :number_of_days_in_month, :month, :year, :weeks, :name_of_month, :month_names
 
   WEEKDAYS = "Su Mo Tu We Th Fr Sa"
 
   def initialize month, year
-    raise RangeError if year > 3000 || year < 1800
+
     @month = month
     @year = year
     @first_day_of_month = Zellers.calculate(month, year)
     @number_of_days_in_month = calc_days_in_month(month, year)
-
+    @month_names = ["January" ,"February" ,"March" ,"April" ,"May" ,"June" ,
+                    "July" ,"August" ,"September" ,"October" ,"November" ,"December"]
   end
 
-  # grabs alpha name of month
   def name_of_month
-    name_of_month = ["January","February","March","April","May","June",
-      "July","August","September","October","November","December"]
-    name_of_month[@month - 1] # finds month needed
+    @month_names[@month - 1] # finds month needed
   end
 
   # determines the number of days in month. Takes into considertion leap year too.
@@ -59,7 +57,7 @@ class Month
     rows << name_of_month.center(20) + "  "
     rows << "Su Mo Tu We Th Fr Sa" + "  "
     days = format_dates
-    (0..8).each {|num|
+    (0..7).each {|num|
       fields = days[num * 7, 7]
       rows << fields.join(" ") + "  " if fields
     }
@@ -80,9 +78,11 @@ class Month
       fields = days[num * 7, 7]
       rows << fields.join(" ") + "  " if fields
     }
+
     if rows.last.length < 22
       rows.last << " " * (22 - rows.last.length)
     end
+
     until rows.length == 7
       rows << " " * 22
     end

@@ -2,10 +2,10 @@ require_relative 'month'
 
 
 class Year
-attr_reader = :year
+  attr_reader = :year
 
   def initialize year
-    raise RangeError if year > 3000 || year < 1800
+    raise RangeError if year < 1800 || year > 3000
     @year = year
   end
 
@@ -13,8 +13,7 @@ attr_reader = :year
   def display_year
     @months = []
 
-    @name_of_month = ["January","February","March","April","May","June","July","August","September","October","November","December"]
-    puts (" #{@year}").center(60)
+    puts ("#{@year}").center(60).rstrip
 
 
     (1..12).each do |num|
@@ -22,13 +21,21 @@ attr_reader = :year
       @months << current_month.weeks
     end
 
-    mon = []
+    year_array = []
     @months.each_slice(3) do |quarters|
-      (0..8).each do |num|
-        row = [quarters[0][num], quarters[1][num], quarters[2][num]]
-        mon << row.join
+      if quarters[0][0] == "October".center(20) + "  "
+        (0..7).each do |num|
+          row = [quarters[0][num], quarters[1][num], quarters[2][num]]
+          year_array << row.join if row
+        end
+      else
+        (0..8).each do |num|
+          row = [quarters[0][num], quarters[1][num], quarters[2][num]]
+          year_array << row.join if row
+        end
       end
     end
-    puts mon
+    puts year_array
+
   end
 end
